@@ -1,39 +1,16 @@
 
 #include <iostream>
-#include "Iterator.h"
-
+#include "List.h"
 
 int main()
 {
-    Node<int>* node1 = new Node<int>(1);
-    Node<int>* node2 = new Node<int>(2);
-    Node<int>* node3 = new Node<int>(3);
-    Node<int>* node4 = new Node<int>(4);
-    Node<int>* node5 = new Node<int>(5);
+	List<int> list;
 
-    node1->previous = nullptr;
-    node1->next = node2;
-    node2->previous = node1;
-    node2->next = node3;
-    node3->next = node4;
-    node3->previous = node2;
-    node4->next = node5;
-    node4->previous = node3;
-    node5->next = nullptr;
-    node5->previous = node4;
+	list.pushBack(1);
+	list.pushBack(2);
+	list.pushFront(10);
+	list.popBack();
 
-
-    Iterator<int> iter(node3);
-    std::cout << *iter << std::endl;
-    iter++;
-    std::cout << *iter << std::endl;
-
-
-
-    delete node1;
-    delete node2;
-    delete node3;
-    delete node4;
-    delete node5;
+	return 0;
 
 }
