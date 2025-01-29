@@ -43,16 +43,16 @@ inline List<T>::List() : m_head(nullptr), m_tail(nullptr), m_length(0)
 }
 
 template<typename T>
-inline List<T>::List(std::initializer_list<T> list) : m_length(list.size()), m_head(nullptr), m_tail(nullptr)
+inline List<T>::List(std::initializer_list<T> list) : m_length(0), m_head(nullptr), m_tail(nullptr)
 {
 
-	if (m_length <= 0)
+	if (list.size() <= 0)
 		return;
 	
-	for (int i = 0; i < list.size(); i++)
+	for (T item: list)
 	{
 
-		pushBack(list[i]);
+		pushBack(item);
 
 	}
 
@@ -316,11 +316,7 @@ template<typename T>
 inline T List<T>::last() const
 {
 	if (!m_tail)
-	{
-
 		return T();
-
-	}
 	return m_tail->value;
 
 }
@@ -330,11 +326,7 @@ inline Iterator<T> List<T>::begin() const
 {
 
 	if (!m_head)
-	{
-
-	return Iterator<T>();
-
-	}
+		return Iterator<T>();
 	return Iterator<T>(m_head);
 }
 
@@ -342,13 +334,13 @@ template<typename T>
 inline Iterator<T> List<T>::end() const
 {
 	if (!m_tail)
-	{
-
 		return Iterator<T>();
-
-	}
-
+	
 	return Iterator<T>(m_tail);
+
+
+	
+
 
 }
 
