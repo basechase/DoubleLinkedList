@@ -42,30 +42,27 @@ namespace DoubleLinkedListTests
 
 		TEST_METHOD(PushFront)
 		{
-
 			List<int> list;
-			list.pushFront(1);
+			list.pushBack(1);
+
 			Assert::AreEqual(1, list.first());
 			Assert::AreEqual(1, list.last());
 			Assert::AreEqual(1, list.getLength());
-			
-			list.pushFront(2);
-			Assert::AreEqual(2, list.first());
-			Assert::AreEqual(1, list.last());
+
+			list.pushBack(2);
+
+			Assert::AreEqual(1, list.first());
+			Assert::AreEqual(2, list.last());
 			Assert::AreEqual(2, list.getLength());
 
+			list.pushBack(3);
 
-			list.pushFront(3);
-			Assert::AreEqual(3, list.first());
-			Assert::AreEqual(2, *(list.begin()));
-			Assert::AreEqual(1, list.last());
-
-			
+			Assert::AreEqual(1, list.first());
+			Assert::AreEqual(2, *(list.begin()++));
+			Assert::AreEqual(3, list.last());
 			Assert::AreEqual(3, list.getLength());
-
-
-
 		}
+
 
 
 

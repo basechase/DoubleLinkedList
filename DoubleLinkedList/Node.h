@@ -2,7 +2,7 @@
 
 
 template<typename T>
-struct Node 
+struct Node
 {
 public:
 	Node<T>();
@@ -13,19 +13,15 @@ public:
 	T value;
 	Node<T>* next;
 	Node<T>* previous;
- 
 
 };
 
 template<typename T>
 inline Node<T>::Node() : next(nullptr), previous(nullptr)
 {
-
 }
-
 
 template<typename T>
 inline Node<T>::Node(T value) : next(nullptr), previous(nullptr), value(value)
 {
-
 }
