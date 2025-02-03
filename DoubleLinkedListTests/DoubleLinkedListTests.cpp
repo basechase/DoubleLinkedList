@@ -67,11 +67,63 @@ namespace DoubleLinkedListTests
 		{
 
 
+			List<int> list = { 1,2 };
+
+			list.pushBack(11);
+
+			Assert::AreEqual(11, list.last());
+			Assert::AreEqual(1, *(list.begin()));
+			
+			list.pushBack(-5);
+			Assert::AreEqual(-5, list.last());
+			
+			list.remove(list.last());
+			Assert::AreEqual(11, list.last());
+
+
 
 		}
 
+		TEST_METHOD(PopFront)
+		{
+			List<int> list = { 2, 6, 5, 1, 6 };
+			list.popFront();
+
+			Assert::AreEqual(6, *(list.begin()));
+		
 
 
+			
+
+
+
+		}
+
+		TEST_METHOD(PopBack)
+		{
+			List<int> list = { -2, -4, 2, 12, 122 };
+
+			list.popBack();
+
+			Assert::AreEqual(12, list.last());
+
+
+		}
+	
+		TEST_METHOD(Erase)
+		{
+
+		}
+
+		TEST_METHOD(Remove)
+		{
+
+		}
+
+		TEST_METHOD(Insert)
+		{
+
+		}
 
 
 
