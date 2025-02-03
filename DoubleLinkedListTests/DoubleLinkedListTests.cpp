@@ -63,6 +63,13 @@ namespace DoubleLinkedListTests
 			Assert::AreEqual(3, list.getLength());
 		}
 
+		TEST_METHOD(PushBack)
+		{
+
+
+
+		}
+
 
 
 
