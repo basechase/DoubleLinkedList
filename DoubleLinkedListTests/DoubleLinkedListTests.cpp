@@ -112,16 +112,34 @@ namespace DoubleLinkedListTests
 	
 		TEST_METHOD(Erase)
 		{
+			List<int> list = { 2,5,6,1,-4 };
+
+			list.remove(-4);
+
+			Assert::AreEqual(1, list.last());
+			
+
 
 		}
 
 		TEST_METHOD(Remove)
 		{
+			List<int> list = { 3 ,6 ,6 ,6 ,3 };
+
+			list.remove(6);
+
+			Assert::AreEqual(list.first(), list.last());
+			
+
+
 
 		}
 
 		TEST_METHOD(Insert)
 		{
+			List<int> list = { 1,2 };
+
+			list.insert(3, 3);
 
 		}
 
