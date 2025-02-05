@@ -4,13 +4,24 @@
 
 int main()
 {
-	List<int> list;
+	List<int> list = { 3 ,6 ,6 ,6 ,3 };
 
-	list.pushBack(1);
-	list.pushBack(2);
-	list.pushFront(10);
-	list.popBack();
+	list.remove(6);
 
-	return 0;
+	
+	list.insert(100, 0);
+	list.insert(100, 2);
+	
+
+	list.remove(100);
+
+
+
+	for (int value : list) {
+		std::cout << value << std::endl;
+	}
+
+
+
 
 }

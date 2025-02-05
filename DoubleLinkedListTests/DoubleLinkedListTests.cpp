@@ -86,11 +86,13 @@ namespace DoubleLinkedListTests
 
 		TEST_METHOD(PopFront)
 		{
-			List<int> list = { 2, 6, 5, 1, 6 };
+			List<int> list = { 2, 6, 5, 1 };
 			list.popFront();
 
 			Assert::AreEqual(6, *(list.begin()));
-		
+			list.pushFront(3);
+			list.popFront();
+			Assert::AreEqual(6, *(list.begin()));
 
 
 			
@@ -101,12 +103,17 @@ namespace DoubleLinkedListTests
 
 		TEST_METHOD(PopBack)
 		{
-			List<int> list = { -2, -4, 2, 12, 122 };
+			List<int> list = { -2, -4, -2, 12, 122 };
 
 			list.popBack();
 
 			Assert::AreEqual(12, list.last());
 
+			list.popBack();
+			Assert::AreEqual(*(list.begin()), list.last());
+			list.pushBack(1000000000);
+			list.popBack();
+			Assert::AreEqual(*(list.begin()), list.last());
 
 		}
 	
@@ -117,6 +124,10 @@ namespace DoubleLinkedListTests
 			list.remove(-4);
 
 			Assert::AreEqual(1, list.last());
+
+			list.remove(2);
+
+			Assert::AreNotEqual(list.last(), list.first());
 			
 
 
@@ -129,9 +140,14 @@ namespace DoubleLinkedListTests
 			list.remove(6);
 
 			Assert::AreEqual(list.first(), list.last());
+			list.insert(100, 0);
+			list.insert(100, 2);
+			Assert::AreNotEqual(list.first(), list.last());
+
+			list.remove(100);
+
+			Assert::AreEqual(list.first(), list.last());
 			
-
-
 
 		}
 
@@ -139,10 +155,24 @@ namespace DoubleLinkedListTests
 		{
 			List<int> list = { 1,2 };
 
-			list.insert(3, 3);
+			list.insert(1, 1);
+			
+			Assert::AreEqual(3, list.getLength());
+			Assert::AreEqual(1, list.last());
+
+			list.insert(2,2);
+
+			Assert::AreEqual(2, list.last());
+
+			list.insert(-10000, 3);
+
+			Assert::AreEqual(-10000, list.last());
+			
+
+			
 
 		}
-
+		
 
 
 	};
