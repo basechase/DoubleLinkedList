@@ -34,7 +34,8 @@ inline Iterator<T>::Iterator(Node<T>* node) : m_current(node)
 template<typename T>
 inline T Iterator<T>::operator*() const
 {
-	return m_current->value;
+		return m_current->value;
+
 }
 
 template<typename T>

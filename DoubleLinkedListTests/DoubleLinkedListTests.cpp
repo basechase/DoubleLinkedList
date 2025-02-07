@@ -172,6 +172,15 @@ namespace DoubleLinkedListTests
 			
 
 		}
+
+		TEST_METHOD(Begin)
+		{
+			List <int> list = { 1,2,3,4 };
+
+			Assert::AreEqual(1, *(list.begin()));
+		}
+
+		
 		
 
 

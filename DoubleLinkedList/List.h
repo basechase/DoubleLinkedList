@@ -191,6 +191,7 @@ inline bool List<T>::remove(const T& value)
 	if (m_head->value == value)
 	{
 		popFront();
+		remove(value);
 		return true;
 	}
 
@@ -200,6 +201,7 @@ inline bool List<T>::remove(const T& value)
 	if (m_tail->value == value)
 	{
 		popBack();
+		remove(value);
 		return true;
 	}
 
@@ -207,7 +209,7 @@ inline bool List<T>::remove(const T& value)
 		return false;
 
 	Node<T>* node = m_head->next;
-	while (node != m_tail->previous)
+	while (node != m_tail)
 	{
 		if (node->value == value)
 		{
@@ -216,6 +218,7 @@ inline bool List<T>::remove(const T& value)
 			m_length--;
 			delete node;
 			node = nullptr;
+			remove(value);
 			return true;
 		}
 		node = node->next;

@@ -4,22 +4,19 @@
 
 int main()
 {
-	List<int> list = { 3 ,6 ,6 ,6 ,3 };
+	List<int> list = { 1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1 };
 
-	list.remove(6);
-
+	list.remove(2);
+	list.remove(3);
 	
-	list.insert(100, 0);
-	list.insert(100, 2);
 	
 
-	list.remove(100);
 
-
-
+	
 	for (int value : list) {
 		std::cout << value << std::endl;
 	}
+	
 
 
 
