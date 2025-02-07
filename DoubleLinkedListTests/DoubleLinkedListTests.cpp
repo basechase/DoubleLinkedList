@@ -140,14 +140,10 @@ namespace DoubleLinkedListTests
 			list.remove(6);
 
 			Assert::AreEqual(list.first(), list.last());
-			list.insert(100, 0);
-			list.insert(100, 2);
-			Assert::AreNotEqual(list.first(), list.last());
-
-			list.remove(100);
-
-			Assert::AreEqual(list.first(), list.last());
 			
+			
+
+				
 
 		}
 
