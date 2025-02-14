@@ -140,7 +140,8 @@ namespace DoubleLinkedListTests
 			list.remove(6);
 
 			Assert::AreEqual(list.first(), list.last());
-			
+			list.insert(0, 4);
+			list.pushBack(5);
 			
 
 				
@@ -174,6 +175,12 @@ namespace DoubleLinkedListTests
 			List <int> list = { 1,2,3,4 };
 
 			Assert::AreEqual(1, *(list.begin()));
+
+			list.popFront();
+			Assert::AreEqual(2, *(list.begin()));
+			list.popFront();
+			Assert::AreEqual(3, *(list.begin()));
+
 		}
 
 		
