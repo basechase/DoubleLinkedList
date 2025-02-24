@@ -22,7 +22,7 @@ public:
 	Iterator<T> end() const;
 	void destroy();
 	int getLength() const;
-
+	Iterator<T> find(const T& value);
 
 
 
@@ -299,6 +299,17 @@ template<typename T>
 inline int List<T>::getLength() const
 {
 	return m_length;
+}
+
+template<typename T>
+inline Iterator<T> List<T>::find(const T& value)
+{
+	for (Iterator<T> iter = begin(); iter != end(); iter++)
+	{
+		if (*iter == value)
+			return iter;
+	}
+	return Iterator<T>();
 }
 
 
