@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "List.h"
+#include "ObjectPool.h"
 
 int main()
 {
@@ -18,7 +19,8 @@ int main()
 	}
 	
 
-
-
+	ObjectPool<int*> objectPool = ObjectPool<int*>(100, []() {return new int; });
+	std::cout << objectPool.CountAll();
+	std::cout << objectPool.CountInactive();
 
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "List.h"
+class Critter;
+
 template<typename T>
 class ObjectPool
 {

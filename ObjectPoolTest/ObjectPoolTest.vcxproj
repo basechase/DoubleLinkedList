@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{CAB8683E-A6E1-4834-8A0F-8E8D2A193F05}</ProjectGuid>
+    <ProjectGuid>{B759817E-F0FA-4FB6-B795-BE8F6ACD22F6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ObjectPoolTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
