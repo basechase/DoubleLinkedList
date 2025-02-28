@@ -1,16 +1,15 @@
 #pragma once
 #include "List.h"
-
 template<typename T>
 class ObjectPool
 {
 public:
-	ObjectPool<T>(int size);
-	~ObjectPool<T>();
+	typedef T(*CreateItemSignature)();
+	ObjectPool<T>(int size, CreateItemSignature createItemFunction);
+	~ObjectPool<T>() = default;
 
-
-	void Disable(T& element);
-	void Release(T& element);
+	void Disable(T* element);
+	void Release(T* element);
 	void Clear();
 	T* Get();
 
@@ -25,37 +24,42 @@ private:
 };
 
 
-
 template<typename T>
-inline ObjectPool<T>::ObjectPool(int size)
+inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunction)
 {
-	for (int i = 0; i < size; i++)
+	if (size == 0)
 	{
-		m_enabled.pushFront(new T());
+		//initialize lists as empty
+		m_disabled.pushFront(nullptr);
+		m_enabled.pushFront(nullptr);
+	}
+	else
+	{
+		for (int i = 0; i < size; i++)
+		{
+			T* item = new T(createItemFunction());
+			m_disabled.pushFront(item);
+		}
 	}
 }
 
-template<typename T>
-inline ObjectPool<T>::~ObjectPool()
-{
-	m_disabled.destroy();
-	m_disabled.destroy();
-}
+
 
 
 
 template<typename T>
-inline void ObjectPool<T>::Disable(T& element)
+inline void ObjectPool<T>::Disable(T* element)
 {
-	m_disabled.pushFront(&element);
-	m_enabled.remove(&element);
+	m_disabled.pushFront(element);
+	m_enabled.remove(element);
 }
 
 template<typename T>
-inline void ObjectPool<T>::Release(T& element)
+inline void ObjectPool<T>::Release(T* element)
 {
-	m_enabled.pushFront(&element);
-	m_disabled.remove(&element);
+
+	m_disabled.pushFront(element);
+
 
 }
 
@@ -63,15 +67,20 @@ template<typename T>
 inline void ObjectPool<T>::Clear()
 {
 	m_disabled.destroy();
-	m_disabled.destroy();
+	m_enabled.destroy();
 }
 
 template<typename T>
 inline T* ObjectPool<T>::Get()
 {
-	m_enabled.pushFront(m_disabled.first());
+	if (m_disabled.getLength() == 0)
+		return nullptr;
+
+	T* obj = m_disabled.first();
 	m_disabled.popFront();
-	return m_disabled.first();
+	m_enabled.pushFront(obj);
+
+	return obj;
 }
 
 template<typename T>
