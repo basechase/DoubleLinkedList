@@ -52,22 +52,27 @@ template<typename T>
 inline void ObjectPool<T>::Disable(T& element)
 {
 
-	if (m_disabled.contains(&element))
-		return;
 
-	m_enabled.remove(&element);
+
+	m_enabled.popFront();
 	m_disabled.pushFront(&element);
+
 
 }
 
 template<typename T>
 inline void ObjectPool<T>::Release(T& element)
 {
-	if (m_disabled.find(&element))
-	{
-		m_disabled.remove(&element);
-		m_enabled.pushFront(&element);
-	}
+
+
+
+	m_disabled.pushBack(&element);
+	m_enabled.remove(&element);
+
+
+
+	// Add to disabled list
+
 
 
 
@@ -108,5 +113,5 @@ inline int ObjectPool<T>::CountInactive()
 template<typename T>
 inline int ObjectPool<T>::CountAll()
 {
-	return (CountActive() + CountInactive());
+	return CountActive() + CountInactive();
 }
