@@ -23,7 +23,7 @@ public:
 	void destroy();
 	int getLength() const;
 	Iterator<T> find(const T& value);
-
+	bool contains(const T* value) const;
 
 
 
@@ -313,3 +313,14 @@ inline Iterator<T> List<T>::find(const T& value)
 }
 
 
+template<typename T>
+inline bool List<T>::contains(const T* value) const
+{
+	Iterator<T> iter;
+	for (iter = begin(); iter != end(); iter++)
+	{
+		if (*iter == value)
+			return true;
+	}
+	return false;
+}

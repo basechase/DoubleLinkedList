@@ -1,7 +1,6 @@
 #pragma once
 #include "List.h"
-class Critter;
-
+#include "Critter.h"
 template<typename T>
 class ObjectPool
 {
@@ -10,8 +9,8 @@ public:
 	ObjectPool<T>(int size, CreateItemSignature createItemFunction);
 	~ObjectPool<T>() = default;
 
-	void Disable(T* element);
-	void Release(T* element);
+	void Disable(T& element);
+	void Release(T& element);
 	void Clear();
 	T* Get();
 
@@ -50,17 +49,26 @@ inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunctio
 
 
 template<typename T>
-inline void ObjectPool<T>::Disable(T* element)
+inline void ObjectPool<T>::Disable(T& element)
 {
-	m_disabled.pushFront(element);
-	m_enabled.remove(element);
+
+	if (m_disabled.contains(&element))
+		return;
+
+	m_enabled.remove(&element);
+	m_disabled.pushFront(&element);
+
 }
 
 template<typename T>
-inline void ObjectPool<T>::Release(T* element)
+inline void ObjectPool<T>::Release(T& element)
 {
+	if (m_disabled.find(&element))
+	{
+		m_disabled.remove(&element);
+		m_enabled.pushFront(&element);
+	}
 
-	m_disabled.pushFront(element);
 
 
 }
