@@ -93,7 +93,12 @@ namespace ObjectPoolTest
 
 		TEST_METHOD(CountAll)
 		{
-
+			ObjectPool<Critter*> objectPool = ObjectPool<Critter*>(50, []() {return new Critter; });
+			for (int i = 0; i < 25; i++)
+			{
+				objectPool.Get();
+			}
+			Assert::AreEqual(50, objectPool.CountAll());
 		}
 
 
