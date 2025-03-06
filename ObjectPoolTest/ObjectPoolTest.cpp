@@ -41,11 +41,20 @@ namespace ObjectPoolTest
 		{
 			
 			ObjectPool<Critter*> objectPool = ObjectPool<Critter*>(50, []() {return new Critter; });
-		
+			Critter* critters[50];
 			//assert that critters are initialized in disabled list
 			Assert::AreEqual(50, objectPool.CountInactive());
 
 			//release from inactive to active
+			for (int i = 0; i < 50; i++)
+			{
+				critters[i] = new Critter();
+				objectPool.Release(critters[i]);
+			}
+			Assert::AreEqual(50, objectPool.CountActive());
+
+
+
 
 		}
 
