@@ -30,10 +30,10 @@ namespace ObjectPoolTest
 			{
 				critters[i] = new Critter();
 				objectPool.Get();
-				//objectPool.Disable(critters[i]);
+				objectPool.Disable(critters[i]);
 			}
-			Assert::AreEqual(0, objectPool.CountInactive());
-			Assert::AreEqual(50, objectPool.CountActive());
+			Assert::AreEqual(50, objectPool.CountInactive());
+			Assert::AreEqual(0, objectPool.CountActive());
 			
 		}
 
